@@ -1,7 +1,8 @@
-const CACHE = 'daily-checklist-v1';
+const CACHE = 'daily-checklist-v2';
 const FILES = [
   './',
   './index.html',
+  './app.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -36,6 +37,27 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(() => hit);
       return hit || fresh;
+    })
+  );
+});
+
+self.addEventListener('push', (event) => {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch (e) {}
+  event.waitUntil(self.registration.showNotification(data.title || 'Daily checklist', {
+    body: data.body || 'You still have tasks left today.',
+    icon: 'icons/icon-192.png',
+    badge: 'icons/icon-192.png',
+    tag: 'reminder'
+  }));
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      if (list.length) return list[0].focus();
+      return self.clients.openWindow('./');
     })
   );
 });

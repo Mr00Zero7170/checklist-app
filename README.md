@@ -16,11 +16,15 @@ Most habit apps are bloated. They want notifications, data, subscriptions. I jus
 - **Fast** — No frameworks, no bloat. Just vanilla JS and a service worker.
 - **Minimal** — It does one thing well.
 
-## Deploy in 5 Minutes
+## Try It Now
+
+**[Open the app →](https://mr00zero7170.github.io/checklist-app/)**
+
+## Deploy Your Own (5 Minutes)
 
 1. Fork this repo or use it as a template
 2. Enable GitHub Pages (Settings → Pages → Deploy from branch)
-3. Done. Your app is live at `https://yourusername.github.io/checklist/`
+3. Done. Your app is live at your own URL.
 
 ## Install on Your Phone
 
